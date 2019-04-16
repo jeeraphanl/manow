@@ -8,9 +8,7 @@ interface NewsRepository {
     fun getFeed(): Observable<NewsResponse>
 }
 
-class NewsRepositoryImpl(
-        private val api: Api
-): NewsRepository {
+class NewsRepositoryImpl(private val api: Api) : NewsRepository {
 
     override fun getFeed(): Observable<NewsResponse> {
         return api.getFeed()

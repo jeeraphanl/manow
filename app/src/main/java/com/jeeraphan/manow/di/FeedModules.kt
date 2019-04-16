@@ -10,9 +10,9 @@ import org.koin.dsl.module.module
 
 val feedModule = module {
 
-    factory<NewsRepository> { NewsRepositoryImpl(api = get()) }
+    factory<NewsRepository> { NewsRepositoryImpl(get()) }
 
-    factory<GetFeedUseCase> { GetFeedUseCaseImpl(repository = get()) }
+    factory<GetFeedUseCase> { GetFeedUseCaseImpl(get()) }
 
-    viewModel { FeedViewModel(getFeedUseCase = get()) }
+    viewModel { FeedViewModel(get()) }
 }

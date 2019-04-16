@@ -15,11 +15,11 @@ class FeedActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel.articleList.observe(this, Observer { articleList ->
-            titleTextView.text = "The total article is ${articleList?.size}"
+        viewModel.articleList().observe(this, Observer { articles ->
+            titleTextView.text = "The total of articles is ${articles?.size}"
         })
 
-        viewModel.errorMessage.observe(this, Observer { errorMessage ->
+        viewModel.errorMessage().observe(this, Observer { errorMessage ->
             titleTextView.text = errorMessage
         })
 

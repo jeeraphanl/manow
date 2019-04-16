@@ -8,9 +8,7 @@ interface GetFeedUseCase {
     fun execute(): Observable<List<NewsResponse.Article>>
 }
 
-class GetFeedUseCaseImpl(
-        private val repository: NewsRepository
-) : GetFeedUseCase {
+class GetFeedUseCaseImpl(private val repository: NewsRepository) : GetFeedUseCase {
 
     override fun execute(): Observable<List<NewsResponse.Article>> {
         return repository.getFeed()

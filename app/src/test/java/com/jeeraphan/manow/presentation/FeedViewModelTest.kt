@@ -28,6 +28,8 @@ class FeedViewModelTest {
     fun setup() {
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
         RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
+
+        viewModel = FeedViewModel(useCase)
     }
 
     @After
@@ -45,11 +47,10 @@ class FeedViewModelTest {
         )
         doReturn(Observable.just(response)).whenever(useCase).execute()
 
-        viewModel = FeedViewModel(useCase)
         viewModel.getFeed()
 
-        assert(viewModel.errorMessage.value == null)
-        assert(viewModel.articleList.value != null)
+        assert(viewModel.errorMessage().value == null)
+        assert(viewModel.articleList().value != null)
     }
 
     @Test
@@ -58,10 +59,9 @@ class FeedViewModelTest {
         val errorMessage = "404 Data not found"
         doReturn(Observable.error<NewsResponse>(Throwable(errorMessage))).whenever(useCase).execute()
 
-        viewModel = FeedViewModel(useCase)
         viewModel.getFeed()
 
-        assert(viewModel.errorMessage.value != null)
-        assert(viewModel.articleList.value == null)
+        assert(viewModel.errorMessage().value != null)
+        assert(viewModel.articleList().value == null)
     }
 }

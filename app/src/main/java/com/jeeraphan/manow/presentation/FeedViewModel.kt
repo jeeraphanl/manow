@@ -1,5 +1,6 @@
 package com.jeeraphan.manow.presentation
 
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.jeeraphan.manow.data.entity.response.NewsResponse
@@ -13,10 +14,13 @@ class FeedViewModel(
         private val getFeedUseCase: GetFeedUseCase
 ) : ViewModel() {
 
-    var articleList = MutableLiveData<List<NewsResponse.Article>>()
-    var errorMessage = MutableLiveData<String>()
-
+    private var articleList = MutableLiveData<List<NewsResponse.Article>>()
+    private var errorMessage = MutableLiveData<String>()
     private val compositeDisposable = CompositeDisposable()
+
+    fun articleList(): LiveData<List<NewsResponse.Article>> = articleList
+
+    fun errorMessage(): LiveData<String> = errorMessage
 
     fun getFeed() {
         getFeedUseCase.execute()
