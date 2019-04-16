@@ -14,6 +14,7 @@ class FeedViewModel(
 ) : ViewModel() {
 
     var articleList = MutableLiveData<List<FeedResponse.Article>>()
+    var errorMessage = MutableLiveData<String>()
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -24,7 +25,7 @@ class FeedViewModel(
                 .subscribe({ response ->
                     articleList.value = response.articles
                 }, {
-
+                    errorMessage.value = it.localizedMessage
                 })
                 .addTo(compositeDisposable)
 
