@@ -2,7 +2,7 @@ package com.jeeraphan.manow.di
 
 import com.jeeraphan.manow.data.datasource.OkHttpBuilder
 import com.jeeraphan.manow.data.datasource.RetrofitBuilder
-import com.jeeraphan.manow.data.repository.Api
+import com.jeeraphan.manow.data.datasource.Api
 import org.koin.dsl.module.module
 import retrofit2.CallAdapter
 import retrofit2.Converter

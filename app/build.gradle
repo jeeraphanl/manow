@@ -46,11 +46,13 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 
     //glide
-    implementation 'com.github.bumptech.glide:glide:3.8.0'
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
 
     //test
     testImplementation 'junit:junit:4.12'
+    testImplementation "org.koin:koin-test:$koin_version"
     testImplementation "com.nhaarman:mockito-kotlin:1.5.0"
+    testImplementation 'android.arch.core:core-testing:1.1.1'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }

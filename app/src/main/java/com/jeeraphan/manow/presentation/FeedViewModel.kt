@@ -2,7 +2,7 @@ package com.jeeraphan.manow.presentation
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.jeeraphan.manow.data.entity.response.FeedResponse
+import com.jeeraphan.manow.data.entity.response.NewsResponse
 import com.jeeraphan.manow.domain.GetFeedUseCase
 import com.tdcm.trueidapp.extensions.addTo
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -13,7 +13,7 @@ class FeedViewModel(
         private val getFeedUseCase: GetFeedUseCase
 ) : ViewModel() {
 
-    var articleList = MutableLiveData<List<FeedResponse.Article>>()
+    var articleList = MutableLiveData<List<NewsResponse.Article>>()
     var errorMessage = MutableLiveData<String>()
 
     private val compositeDisposable = CompositeDisposable()
@@ -22,10 +22,10 @@ class FeedViewModel(
         getFeedUseCase.execute()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ response ->
-                    articleList.value = response.articles
-                }, {
-                    errorMessage.value = it.localizedMessage
+                .subscribe({ articles ->
+                    articleList.value = articles
+                }, { error ->
+                    errorMessage.value = error.localizedMessage
                 })
                 .addTo(compositeDisposable)
 

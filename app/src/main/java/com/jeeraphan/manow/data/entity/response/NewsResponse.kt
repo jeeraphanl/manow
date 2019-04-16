@@ -1,9 +1,9 @@
 package com.jeeraphan.manow.data.entity.response
 
-class FeedResponse {
+class NewsResponse {
     var status: String? = null
     val totalResults: Int? = null
-    var articles: MutableList<Article>? = null
+    var articles: List<Article>? = null
 
     class Article {
         val source: Source? = null

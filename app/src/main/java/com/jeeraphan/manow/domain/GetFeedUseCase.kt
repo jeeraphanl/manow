@@ -1,18 +1,19 @@
 package com.jeeraphan.manow.domain
 
-import com.jeeraphan.manow.data.entity.response.FeedResponse
-import com.jeeraphan.manow.data.repository.FeedRepository
+import com.jeeraphan.manow.data.entity.response.NewsResponse
+import com.jeeraphan.manow.data.repository.NewsRepository
 import io.reactivex.Observable
 
 interface GetFeedUseCase {
-    fun execute(): Observable<FeedResponse>
+    fun execute(): Observable<List<NewsResponse.Article>>
 }
 
 class GetFeedUseCaseImpl(
-        private val repository: FeedRepository
+        private val repository: NewsRepository
 ) : GetFeedUseCase {
 
-    override fun execute(): Observable<FeedResponse> {
+    override fun execute(): Observable<List<NewsResponse.Article>> {
         return repository.getFeed()
+                .map { it.articles }
     }
 }
