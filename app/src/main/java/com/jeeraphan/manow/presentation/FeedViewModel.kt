@@ -10,9 +10,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class FeedViewModel(
-        private val getFeedUseCase: GetFeedUseCase
-) : ViewModel() {
+class FeedViewModel(private val getFeedUseCase: GetFeedUseCase) : ViewModel() {
 
     private var articleList = MutableLiveData<List<Article>>()
     private var errorMessage = MutableLiveData<String>()
