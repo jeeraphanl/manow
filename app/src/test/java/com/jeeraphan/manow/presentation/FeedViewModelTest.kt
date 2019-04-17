@@ -1,7 +1,8 @@
 package com.jeeraphan.manow.presentation
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
-import com.jeeraphan.manow.data.entity.response.NewsResponse
+import com.jeeraphan.manow.data.entity.response.Article
+import com.jeeraphan.manow.data.entity.response.NewsDataModel
 import com.jeeraphan.manow.domain.GetFeedUseCase
 import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.mock
@@ -42,8 +43,8 @@ class FeedViewModelTest {
     fun testLoadData_hasData_ShouldReturnList() {
 
         val response = listOf(
-                NewsResponse.Article(),
-                NewsResponse.Article()
+                Article(),
+                Article()
         )
         doReturn(Observable.just(response)).whenever(useCase).execute()
 
@@ -57,7 +58,7 @@ class FeedViewModelTest {
     fun testLoadData_error_ShouldError() {
 
         val errorMessage = "404 Data not found"
-        doReturn(Observable.error<NewsResponse>(Throwable(errorMessage))).whenever(useCase).execute()
+        doReturn(Observable.error<NewsDataModel>(Throwable(errorMessage))).whenever(useCase).execute()
 
         viewModel.getFeed()
 

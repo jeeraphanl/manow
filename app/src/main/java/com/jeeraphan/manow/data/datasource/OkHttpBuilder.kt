@@ -3,7 +3,7 @@ package com.jeeraphan.manow.data.datasource
 import okhttp3.OkHttpClient
 import java.util.concurrent.TimeUnit
 
-class OkHttpBuilder() {
+class OkHttpBuilder {
 
     fun build(): OkHttpClient {
         return OkHttpClient.Builder()

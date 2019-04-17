@@ -1,6 +1,7 @@
 package com.jeeraphan.manow.usecase
 
-import com.jeeraphan.manow.data.entity.response.NewsResponse
+import com.jeeraphan.manow.data.entity.response.Article
+import com.jeeraphan.manow.data.entity.response.NewsDataModel
 import com.jeeraphan.manow.data.repository.NewsRepository
 import com.jeeraphan.manow.domain.GetFeedUseCase
 import com.jeeraphan.manow.domain.GetFeedUseCaseImpl
@@ -19,11 +20,11 @@ class GetFeedUseCaseTest {
     fun testGetFeed_hasData_shouldReturnList() {
 
         useCase = GetFeedUseCaseImpl(repository)
-        val response = NewsResponse().apply {
+        val response = NewsDataModel().apply {
             status = "200"
             articles = listOf(
-                    NewsResponse.Article(),
-                    NewsResponse.Article()
+                    Article(),
+                    Article()
             )
         }
 
@@ -44,7 +45,7 @@ class GetFeedUseCaseTest {
 
         val errorMessage = "404 Data Not found"
 
-        doReturn(Observable.error<NewsResponse>(Throwable(errorMessage))).whenever(repository).getFeed()
+        doReturn(Observable.error<NewsDataModel>(Throwable(errorMessage))).whenever(repository).getFeed()
 
         val test = useCase.execute().test()
 
