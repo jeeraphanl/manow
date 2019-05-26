@@ -10,13 +10,19 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class FeedViewModel(private val getFeedUseCase: GetFeedUseCase) : ViewModel() {
+class FeedViewModel(
+        private val getFeedUseCase: GetFeedUseCase
+        //TODO 1 inject GetFullNameUseCase
+) : ViewModel() {
 
     private var articleList = MutableLiveData<List<Article>>()
+    private var resultMessage = MutableLiveData<String>()
     private var errorMessage = MutableLiveData<String>()
     private val compositeDisposable = CompositeDisposable()
 
     fun articleList(): LiveData<List<Article>> = articleList
+
+    fun resultMessage(): LiveData<String> = resultMessage
 
     fun errorMessage(): LiveData<String> = errorMessage
 
@@ -31,6 +37,10 @@ class FeedViewModel(private val getFeedUseCase: GetFeedUseCase) : ViewModel() {
                 })
                 .addTo(compositeDisposable)
 
+    }
+
+    fun getFullName() {
+        //TODO 2 load data and assign to resultMessage
     }
 
     override fun onCleared() {

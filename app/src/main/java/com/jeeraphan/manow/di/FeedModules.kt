@@ -16,6 +16,8 @@ val feedModule = module {
 
     factory<GetFeedUseCase> { GetFeedUseCaseImpl(get()) }
 
+    //TODO 4 resolve dependency
+
     factory<FeedContract.Presenter> { (view: FeedContract.View) -> FeedPresenter(view, get()) }
 
     viewModel { FeedViewModel(get()) }

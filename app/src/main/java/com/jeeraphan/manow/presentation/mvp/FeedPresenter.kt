@@ -7,7 +7,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 class FeedPresenter(
-        private var view: FeedContract.View,
+        private var view: FeedContract.View?,
         private val getFeedUseCase: GetFeedUseCase
 ) : FeedContract.Presenter {
 
@@ -18,14 +18,15 @@ class FeedPresenter(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ articles ->
-                    view.showArticleList(articles)
+                    view?.showArticleList(articles)
                 }, { error ->
-                    view.showError(error.localizedMessage)
+                    view?.showError(error.localizedMessage)
                 })
                 .addTo(compositeDisposable)
     }
 
     override fun clear() {
+        view = null
         compositeDisposable.clear()
     }
 }

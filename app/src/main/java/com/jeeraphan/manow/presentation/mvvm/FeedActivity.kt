@@ -19,10 +19,16 @@ class FeedActivity : AppCompatActivity() {
             titleTextView.text = "The total of articles is ${articles?.size}"
         })
 
+        viewModel.resultMessage().observe(this, Observer { resultMessage ->
+            fullNameTextView.text = resultMessage
+        })
+
         viewModel.errorMessage().observe(this, Observer { errorMessage ->
             titleTextView.text = errorMessage
         })
 
         viewModel.getFeed()
+
+        //TODO 3 Call viewModel getFull name
     }
 }

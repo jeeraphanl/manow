@@ -19,6 +19,11 @@ class FeedActivity : AppCompatActivity(), FeedContract.View {
         presenter.getFeed()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.clear()
+    }
+
     override fun showArticleList(articleList: List<Article>) {
         titleTextView.text = "The total of articles is ${articleList?.size}"
     }
