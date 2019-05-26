@@ -20,11 +20,9 @@ val feedModule = module {
 
     factory<GetFeedUseCase> { GetFeedUseCaseImpl(get()) }
 
-    factory<ProfileRepository> { ProfileRepositoryImpl() }
-
-    factory<GetFullNameUseCase> { GetFullNameUseCaseImpl(get()) }
+    //TODO 4 Resolve dependency
 
     factory<FeedContract.Presenter> { (view: FeedContract.View) -> FeedPresenter(view, get()) }
 
-    viewModel { FeedViewModel(get(), get()) }
+    viewModel { FeedViewModel(get()) }
 }

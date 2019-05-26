@@ -12,8 +12,8 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 class FeedViewModel(
-        private val getFeedUseCase: GetFeedUseCase,
-        private val getFullNameUseCase: GetFullNameUseCase
+        private val getFeedUseCase: GetFeedUseCase
+        //TODO 1 Inject GetFullNameUseCase
 ) : ViewModel() {
 
     private var articleList = MutableLiveData<List<Article>>()
@@ -41,13 +41,7 @@ class FeedViewModel(
     }
 
     fun getFullName() {
-        getFullNameUseCase.execute()
-                .subscribe({ fullName ->
-                    resultMessage.value = fullName
-                }, { error ->
-                    errorMessage.value = error.localizedMessage
-                })
-                .addTo(compositeDisposable)
+        //TODO 2 get full name assign to result message and error
     }
 
     override fun onCleared() {
