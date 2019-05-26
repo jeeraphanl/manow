@@ -4,6 +4,7 @@ import android.arch.core.executor.testing.InstantTaskExecutorRule
 import com.jeeraphan.manow.data.entity.response.Article
 import com.jeeraphan.manow.data.entity.response.NewsDataModel
 import com.jeeraphan.manow.domain.GetFeedUseCase
+import com.jeeraphan.manow.domain.GetFullNameUseCase
 import com.jeeraphan.manow.presentation.mvvm.FeedViewModel
 import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.mock
@@ -24,6 +25,8 @@ class FeedViewModelTest {
     val rule = InstantTaskExecutorRule()
 
     private val useCase: GetFeedUseCase = mock()
+    private val getFullNameUseCase: GetFullNameUseCase = mock()
+
     private lateinit var viewModel: FeedViewModel
 
     @Before
@@ -31,7 +34,7 @@ class FeedViewModelTest {
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
         RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
 
-        viewModel = FeedViewModel(useCase)
+        viewModel = FeedViewModel(useCase, getFullNameUseCase)
     }
 
     @After

@@ -28,7 +28,6 @@ class FeedActivity : AppCompatActivity() {
         })
 
         viewModel.getFeed()
-
-        //TODO 3 Call viewModel getFull name
+        viewModel.getFullName()
     }
 }

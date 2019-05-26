@@ -5,14 +5,15 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.jeeraphan.manow.data.entity.response.Article
 import com.jeeraphan.manow.domain.GetFeedUseCase
+import com.jeeraphan.manow.domain.GetFullNameUseCase
 import com.tdcm.trueidapp.extensions.addTo
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 class FeedViewModel(
-        private val getFeedUseCase: GetFeedUseCase
-        //TODO 1 inject GetFullNameUseCase
+        private val getFeedUseCase: GetFeedUseCase,
+        private val getFullNameUseCase: GetFullNameUseCase
 ) : ViewModel() {
 
     private var articleList = MutableLiveData<List<Article>>()
@@ -40,7 +41,13 @@ class FeedViewModel(
     }
 
     fun getFullName() {
-        //TODO 2 load data and assign to resultMessage
+        getFullNameUseCase.execute()
+                .subscribe({ fullName ->
+                    resultMessage.value = fullName
+                }, { error ->
+                    errorMessage.value = error.localizedMessage
+                })
+                .addTo(compositeDisposable)
     }
 
     override fun onCleared() {
