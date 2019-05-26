@@ -1,4 +1,4 @@
-package com.jeeraphan.manow.presentation
+package com.jeeraphan.manow.presentation.mvvm
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
