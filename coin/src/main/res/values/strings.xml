@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">coin</string>
+    <string name="title_activity_coin">CoinActivity</string>
+</resources>

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">coupon</string>
+    <string name="title_activity_coupon">CouponActivity</string>
+</resources>
