@@ -8,10 +8,9 @@ import com.jeeraphan.manow.coin.CoinActivity
 import com.jeeraphan.manow.coupon.CouponActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
-/**
 private const val COIN_PACKAGE_NAME = "com.jeeraphan.manow.coin"
 private const val COUPON_PACKAGE_NAME = "com.jeeraphan.manow.coupon"
-*/
+private const val PLAID_PACKAGE_NAME = "com.jeeraphan.manow.plaid"
 
 class HomeActivity : AppCompatActivity() {
 
@@ -20,18 +19,20 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
 
         coinButton.setOnClickListener {
-
-            /**
-            val intent = Intent(this, CoinActivity::class.java)
-            startActivity(intent)
-             */
-
             startActivity(Intent(this, CoinActivity::class.java))
+        }
+
+        couponButton.setOnClickListener {
+            startActivity(Intent(this, CouponActivity::class.java))
+        }
+
+        plaidButton.setOnClickListener {
+            intent = Intent(this, Class.forName("$PLAID_PACKAGE_NAME.PlaidActivity"))
+            startActivity(intent)
 
             /**
-            val intent = Intent(Intent.ACTION_VIEW).setClassName(
-            COIN_PACKAGE_NAME,
-            "$COIN_PACKAGE_NAME.CoinActivity")
+            val intent = Intent(Intent.ACTION_VIEW).setClassName(PACKAGE_NAME,
+            "$PACKAGE_NAME.PlaidActivity")
             startActivity(intent)
              */
 
@@ -39,17 +40,6 @@ class HomeActivity : AppCompatActivity() {
             val fragment = Class.forName("MyFragment")
             .newInstance() as Fragment
              */
-        }
-
-        couponButton.setOnClickListener {
-            /**
-            val intent = Intent(Intent.ACTION_VIEW).setClassName(
-            COUPON_PACKAGE_NAME,
-            "$packageName.CouponActivity")
-            startActivity(intent)
-             */
-
-            startActivity(Intent(this, CouponActivity::class.java))
         }
     }
 }

@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Manow</string>
     <string name="title_activity_home">HomeActivity</string>
+    <string name="title_plaid">plaid</string>
+    <string name="title_activity_plaid">PlaidActivity</string>
 </resources>

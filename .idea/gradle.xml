@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/coin" />
             <option value="$PROJECT_DIR$/coupon" />
+            <option value="$PROJECT_DIR$/plaid" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
