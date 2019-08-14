@@ -12,8 +12,12 @@ class PlaidActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_plaid)
 
-        textView.setOnClickListener {
+        coinButton.setOnClickListener {
             startActivity(Intent(AppNavigator.COIN))
+        }
+
+        couponButton.setOnClickListener {
+            startActivity(Intent(AppNavigator.COUPON))
         }
     }
 }

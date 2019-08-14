@@ -12,8 +12,12 @@ class CoinActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_coin)
 
-        textView.setOnClickListener {
+        couponButton.setOnClickListener {
             startActivity(Intent(AppNavigator.COUPON))
+        }
+
+        plaidButton.setOnClickListener {
+            startActivity(Intent(this, Class.forName(AppNavigator.PLAID)))
         }
     }
 }
