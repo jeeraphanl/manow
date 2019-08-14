@@ -1,1 +1,1 @@
-include ':app', ':coin', ':coupon', ':plaid'
+include ':app', ':coin', ':coupon', ':plaid', ':core'

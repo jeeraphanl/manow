@@ -3,7 +3,13 @@
     package="com.jeeraphan.manow.coin">
 
     <application>
-        <activity android:name=".CoinActivity" />
+        <activity
+            android:name=".CoinActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.jeeraphan.manow.coin.CoinActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
-
 </manifest>

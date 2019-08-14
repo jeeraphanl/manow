@@ -3,7 +3,14 @@
     package="com.jeeraphan.manow.coupon">
 
     <application>
-        <activity android:name=".CouponActivity" />
+        <activity
+            android:name=".CouponActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.jeeraphan.manow.coupon.CouponActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
