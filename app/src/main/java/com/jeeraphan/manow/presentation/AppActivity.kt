@@ -2,6 +2,7 @@ package com.jeeraphan.manow.presentation
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.jeeraphan.manow.R
 import com.jeeraphan.manow.core.AppNavigator
@@ -14,7 +15,15 @@ class AppActivity : AppCompatActivity() {
         setContentView(R.layout.activity_app)
 
         coinButton.setOnClickListener {
-            startActivity(Intent(AppNavigator.COIN))
+            //activity
+            //startActivity(Intent(AppNavigator.COIN))
+
+            //fragment
+            val coinFragment = Class.forName("com.jeeraphan.manow.coin.CoinFragment")
+                    .newInstance() as Fragment
+            val fragmentTransaction = supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.appContainerFrameLayout, coinFragment)
+            fragmentTransaction.commit()
         }
 
         couponButton.setOnClickListener {
