@@ -1,11 +1,9 @@
 package com.jeeraphan.manow.presentation
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.jeeraphan.manow.data.entity.response.Article
 import com.jeeraphan.manow.data.entity.response.NewsDataModel
 import com.jeeraphan.manow.domain.GetFeedUseCase
-import com.jeeraphan.manow.domain.GetFullNameUseCase
-import com.jeeraphan.manow.presentation.mvvm.FeedViewModel
 import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.whenever
@@ -25,7 +23,6 @@ class FeedViewModelTest {
     val rule = InstantTaskExecutorRule()
 
     private val useCase: GetFeedUseCase = mock()
-    private val getFullNameUseCase: GetFullNameUseCase = mock()
 
     private lateinit var viewModel: FeedViewModel
 
@@ -34,7 +31,7 @@ class FeedViewModelTest {
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
         RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
 
-        viewModel = FeedViewModel(useCase, getFullNameUseCase)
+        viewModel = FeedViewModel(useCase)
     }
 
     @After
@@ -54,8 +51,8 @@ class FeedViewModelTest {
 
         viewModel.getFeed()
 
-        assert(viewModel.errorMessage().value == null)
-        assert(viewModel.articleList().value != null)
+        assert(viewModel.errorMessage.value == null)
+        assert(viewModel.articleList.value != null)
     }
 
     @Test
@@ -66,7 +63,7 @@ class FeedViewModelTest {
 
         viewModel.getFeed()
 
-        assert(viewModel.errorMessage().value != null)
-        assert(viewModel.articleList().value == null)
+        assert(viewModel.errorMessage.value != null)
+        assert(viewModel.articleList.value == null)
     }
 }

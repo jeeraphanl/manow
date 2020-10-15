@@ -2,16 +2,19 @@ package com.jeeraphan.manow.domain
 
 import com.jeeraphan.manow.data.entity.response.Article
 import com.jeeraphan.manow.data.repository.NewsRepository
-import io.reactivex.Observable
 
 interface GetFeedUseCase {
-    fun execute(): Observable<List<Article>>
+    suspend fun execute(): UseCaseResult<List<Article>>
 }
 
 class GetFeedUseCaseImpl(private val repository: NewsRepository) : GetFeedUseCase {
 
-    override fun execute(): Observable<List<Article>> {
-        return repository.getFeed()
-                .map { it.articles }
+    override suspend fun execute(): UseCaseResult<List<Article>> {
+        return try {
+            val result = repository.getFeed()
+            UseCaseResult.Success(result.articles)
+        } catch (e: Exception) {
+            UseCaseResult.Error(e)
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.jeeraphan.manow.presentation.mvvm
+package com.jeeraphan.manow.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

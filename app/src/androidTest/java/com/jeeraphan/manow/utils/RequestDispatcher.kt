@@ -11,7 +11,6 @@ class RequestDispatcher : Dispatcher() {
     }
 
     override fun dispatch(request: RecordedRequest): MockResponse {
-        println("request.path: ${request.path}")
         return when (request.path) {
             URL_TEST -> createMockedResponse("feed_test.json")
             else -> createMockedResponse(httpCode = 404)
@@ -26,7 +25,6 @@ fun createMockedResponse(mockedBodyPath: String? = null, httpCode: Int = 200, de
             .apply {
                 if (mockedBodyPath != null) {
                     val body = readFromFile<String>(mockedBodyPath)
-                    println("request.path: $body")
                     setBody(body)
                 }
             }

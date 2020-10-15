@@ -1,9 +1,13 @@
 package com.jeeraphan.manow.screen
 
+import androidx.test.espresso.Espresso
+import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.rule.ActivityTestRule
+import com.jeeraphan.manow.R
 import com.jeeraphan.manow.data.datasource.Api
 import com.jeeraphan.manow.data.datasource.RetrofitBuilder
-import com.jeeraphan.manow.presentation.mvvm.FeedActivity
+import com.jeeraphan.manow.presentation.FeedActivity
 import com.jeeraphan.manow.utils.RequestDispatcher
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
@@ -24,7 +28,6 @@ class FeedTest {
 
     private val mockWebServer = MockWebServer()
     private lateinit var dispatcher: RequestDispatcher
-    private val feedScreen = FeedScreen()
 
     private val mockedModule = module {
         single<Api>(override = true) { get<RetrofitBuilder>().build(TEST_BASE_URL) }
@@ -35,7 +38,6 @@ class FeedTest {
         mockWebServer.start(TEST_PORT)
         dispatcher = RequestDispatcher()
         mockWebServer.dispatcher = dispatcher
-
         loadKoinModules(mockedModule)
     }
 
@@ -48,6 +50,8 @@ class FeedTest {
     @Test
     fun testFeedSuccessState() {
         activityRule.launchActivity(null)
-        feedScreen.checkUiSuccessState()
+        Thread.sleep(500)
+        Espresso.onView(ViewMatchers.withId(R.id.titleTextView))
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 }
