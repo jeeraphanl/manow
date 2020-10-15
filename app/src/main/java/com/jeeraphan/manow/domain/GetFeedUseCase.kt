@@ -1,7 +1,6 @@
 package com.jeeraphan.manow.domain
 
 import com.jeeraphan.manow.data.entity.response.Article
-import com.jeeraphan.manow.data.entity.response.NewsDataModel
 import com.jeeraphan.manow.data.repository.NewsRepository
 import io.reactivex.Observable
 

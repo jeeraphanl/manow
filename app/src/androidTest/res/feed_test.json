@@ -1,0 +1,32 @@
+{
+  "status": "ok",
+  "totalResults": 10,
+  "articles": [
+    {
+      "source": {
+        "id": "abc-news",
+        "name": "ABC News"
+      },
+      "author": "Bill Hutchinson",
+      "title": "Suspect in fatal Portland shooting of Trump supporter had gun in pocket when killed by task force: Officials",
+      "description": "",
+      "url": "https://abcnews.go.com/US/suspect-fatal-portland-shooting-trump-supporter-gun-pocket/story?id=73609495",
+      "urlToImage": "https://s.abcnews.com/images/US/reinoehl-scene-01-ap-iwb-201014_1602695875669_hpMain_16x9_992.jpg",
+      "publishedAt": "2020-10-15T00:13:00Z",
+      "content": "The fugitive who allegedly gunned down a pro-Trump protester in Portland, Oregon, over the summer had his gun in his pocket when he was killed in a hail of more than 30 bullets by members of a federa… [+4478 chars]"
+    },
+    {
+      "source": {
+        "id": "abc-news",
+        "name": "ABC News"
+      },
+      "author": "Conor Finnegan, James Gordon Meek, Jordyn Phelps",
+      "title": "2 Americans freed from militant group in Yemen, returning to US",
+      "description": "",
+      "url": "https://abcnews.go.com/Politics/americans-freed-militant-group-yemen-returning-us/story?id=73612547",
+      "urlToImage": "https://s.abcnews.com/images/International/houthi-fighters-01-gty-jt-201014_1602702675185_hpMain_16x9_992.jpg",
+      "publishedAt": "2020-10-14T19:59:05Z",
+      "content": "Two Americans have been freed and the remains of a third American have been released by the Houthis, an Iran-backed rebel group in Yemen, as part of an exchange, national security adviser Robert O'Br… [+4517 chars]"
+    }
+  ]
+}

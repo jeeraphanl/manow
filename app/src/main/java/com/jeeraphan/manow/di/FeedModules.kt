@@ -2,17 +2,13 @@ package com.jeeraphan.manow.di
 
 import com.jeeraphan.manow.data.repository.NewsRepository
 import com.jeeraphan.manow.data.repository.NewsRepositoryImpl
-import com.jeeraphan.manow.data.repository.ProfileRepository
-import com.jeeraphan.manow.data.repository.ProfileRepositoryImpl
 import com.jeeraphan.manow.domain.GetFeedUseCase
 import com.jeeraphan.manow.domain.GetFeedUseCaseImpl
-import com.jeeraphan.manow.domain.GetFullNameUseCase
-import com.jeeraphan.manow.domain.GetFullNameUseCaseImpl
 import com.jeeraphan.manow.presentation.mvp.FeedContract
 import com.jeeraphan.manow.presentation.mvp.FeedPresenter
 import com.jeeraphan.manow.presentation.mvvm.FeedViewModel
-import org.koin.android.viewmodel.ext.koin.viewModel
-import org.koin.dsl.module.module
+import org.koin.android.viewmodel.dsl.viewModel
+import org.koin.dsl.module
 
 val feedModule = module {
 

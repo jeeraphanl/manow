@@ -1,7 +1,7 @@
 package com.jeeraphan.manow.presentation.mvp
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.jeeraphan.manow.R
 import com.jeeraphan.manow.data.entity.response.Article
 import kotlinx.android.synthetic.main.activity_main.*
