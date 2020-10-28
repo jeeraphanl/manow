@@ -14,6 +14,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:textSize="72sp"
+        android:textStyle="bold"
         tools:text="Title" />
 
     <TextView

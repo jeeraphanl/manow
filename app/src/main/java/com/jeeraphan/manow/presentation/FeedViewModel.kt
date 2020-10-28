@@ -18,12 +18,12 @@ class FeedViewModel(
 
     fun getFeed() {
         viewModelScope.launch {
-            when (val resutl = getFeedUseCase.execute()) {
+            when (val result = getFeedUseCase.execute()) {
                 is UseCaseResult.Success -> {
-                    articleList.value = resutl.data
+                    articleList.value = result.data
                 }
                 is UseCaseResult.Error -> {
-                    errorMessage.value = resutl.exception.localizedMessage
+                    errorMessage.value = result.exception.localizedMessage
                 }
             }
         }

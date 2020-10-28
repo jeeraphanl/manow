@@ -18,7 +18,7 @@ class RequestDispatcher : Dispatcher() {
     }
 }
 
-fun createMockedResponse(mockedBodyPath: String? = null, httpCode: Int = 200, delayMills: Long = 500): MockResponse {
+private fun createMockedResponse(mockedBodyPath: String? = null, httpCode: Int = 200, delayMills: Long = 500): MockResponse {
     return MockResponse()
             .setBodyDelay(delayMills, TimeUnit.MILLISECONDS)
             .setResponseCode(httpCode)
@@ -30,7 +30,7 @@ fun createMockedResponse(mockedBodyPath: String? = null, httpCode: Int = 200, de
             }
 }
 
-inline fun <reified T> Any.readFromFile(filePath: String): String {
+private inline fun <reified T> Any.readFromFile(filePath: String): String {
     val input = javaClass.classLoader.getResourceAsStream(filePath)
     return String(input.readBytes())
 }

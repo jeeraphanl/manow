@@ -2,68 +2,66 @@ package com.jeeraphan.manow.presentation
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.jeeraphan.manow.data.entity.response.Article
-import com.jeeraphan.manow.data.entity.response.NewsDataModel
 import com.jeeraphan.manow.domain.GetFeedUseCase
 import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.whenever
-import io.reactivex.Observable
-import io.reactivex.android.plugins.RxAndroidPlugins
-import io.reactivex.plugins.RxJavaPlugins
-import io.reactivex.schedulers.Schedulers
-import org.junit.After
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.setMain
+import org.junit.*
 
+@ExperimentalCoroutinesApi
 class FeedViewModelTest {
 
     @Rule
     @JvmField
     val rule = InstantTaskExecutorRule()
 
-    private val useCase: GetFeedUseCase = mock()
+    private val testDispatcher = TestCoroutineDispatcher()
 
+    private val useCase: GetFeedUseCase = mock()
     private lateinit var viewModel: FeedViewModel
 
     @Before
     fun setup() {
-        RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
-        RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
-
+        Dispatchers.setMain(testDispatcher)
         viewModel = FeedViewModel(useCase)
     }
 
     @After
     fun clean() {
-        RxJavaPlugins.reset()
-        RxAndroidPlugins.reset()
+        Dispatchers.resetMain()
+        testDispatcher.cleanupTestCoroutines()
     }
 
     @Test
-    fun testLoadData_hasData_ShouldReturnList() {
+    fun testLoadData_hasData_ShouldReturnList() = runBlockingTest {
 
         val response = listOf(
                 Article(),
                 Article()
         )
-        doReturn(Observable.just(response)).whenever(useCase).execute()
+        doReturn(response).whenever(useCase).execute()
 
         viewModel.getFeed()
 
-        assert(viewModel.errorMessage.value == null)
-        assert(viewModel.articleList.value != null)
+        Assert.assertNotNull(viewModel.articleList.value)
+        Assert.assertNull(viewModel.errorMessage.value)
     }
 
     @Test
-    fun testLoadData_error_ShouldError() {
+    fun testLoadData_error_ShouldError() = runBlockingTest {
 
         val errorMessage = "404 Data not found"
-        doReturn(Observable.error<NewsDataModel>(Throwable(errorMessage))).whenever(useCase).execute()
+        doReturn(Throwable(errorMessage)).whenever(useCase).execute()
 
         viewModel.getFeed()
 
-        assert(viewModel.errorMessage.value != null)
-        assert(viewModel.articleList.value == null)
+        Assert.assertNull(viewModel.articleList.value)
+        Assert.assertNotNull(viewModel.errorMessage.value)
     }
 }

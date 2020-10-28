@@ -16,7 +16,7 @@ class FeedActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         viewModel.articleList.observe(this, Observer { articles ->
-            titleTextView.text = "The total of articles is ${articles?.size}"
+            titleTextView.text = "${articles?.size}"
         })
 
         viewModel.resultMessage.observe(this, Observer { resultMessage ->
@@ -28,7 +28,5 @@ class FeedActivity : AppCompatActivity() {
         })
 
         viewModel.getFeed()
-
-        //TODO 3 get full name
     }
 }

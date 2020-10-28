@@ -9,6 +9,7 @@ import com.jeeraphan.manow.data.datasource.Api
 import com.jeeraphan.manow.data.datasource.RetrofitBuilder
 import com.jeeraphan.manow.presentation.FeedActivity
 import com.jeeraphan.manow.utils.RequestDispatcher
+import com.jeeraphan.manow.utils.waitForAssertion
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
@@ -16,6 +17,7 @@ import org.junit.Test
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
 import org.koin.dsl.module
+
 
 const val TEST_PORT = 8080
 const val TEST_BASE_URL = "http://localhost:8080/"
@@ -34,6 +36,7 @@ class FeedTest {
         mockWebServer.start(TEST_PORT)
         dispatcher = RequestDispatcher()
         mockWebServer.dispatcher = dispatcher
+
         loadKoinModules(mockedModule)
     }
 
@@ -46,8 +49,11 @@ class FeedTest {
     @Test
     fun testFeedSuccessState() {
         ActivityScenario.launch(FeedActivity::class.java)
-        Thread.sleep(500)
-        Espresso.onView(ViewMatchers.withId(R.id.titleTextView))
-                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        waitForAssertion {
+            Espresso.onView(ViewMatchers
+                    .withId(R.id.titleTextView))
+                    .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+                    .check(ViewAssertions.matches(ViewMatchers.withText("2")))
+        }
     }
 }
