@@ -18,7 +18,9 @@ class RequestDispatcher : Dispatcher() {
     }
 }
 
-private fun createMockedResponse(mockedBodyPath: String? = null, httpCode: Int = 200, delayMills: Long = 500): MockResponse {
+private fun createMockedResponse(mockedBodyPath: String? = null,
+                                 httpCode: Int = 200,
+                                 delayMills: Long = 500): MockResponse {
     return MockResponse()
             .setBodyDelay(delayMills, TimeUnit.MILLISECONDS)
             .setResponseCode(httpCode)
