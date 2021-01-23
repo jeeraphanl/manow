@@ -1,4 +1,4 @@
-package com.jeeraphan.manow.presentation
+package com.jeeraphan.manow
 
 import android.os.Build
 import android.os.Bundle
@@ -13,7 +13,6 @@ import androidx.core.content.ContextCompat
 import androidx.security.crypto.EncryptedFile
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
-import com.jeeraphan.manow.R
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 
