@@ -24,7 +24,7 @@ class FeedActivity : AppCompatActivity() {
         })
 
         viewModel.errorMessage.observe(this, Observer { errorMessage ->
-            titleTextView.text = errorMessage
+            fullNameTextView.text = errorMessage
         })
 
         viewModel.getFeed()
